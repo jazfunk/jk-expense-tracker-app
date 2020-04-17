@@ -8,27 +8,31 @@ class Expense {
   }
 }
 
+// document.getElementById("add-expense-btn").addEventListener("click", (e) => {
+//   e.preventDefault;
+//   addNewExpense("3/15/2020", "desc text", "2.22", "McDonalds");
+// });
 
-document.querySelector("form").addEventListener("click", (e) => {
+document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault;
   addNewExpense("3/15/2020", "desc text", "2.22", "McDonalds");
 });
 
 const setDefaultInputValues = () => {
-    document.getElementById('expense-date').value = "Date of Expense";
-    document.getElementById('expense-description').value = "Description";
-    document.getElementById('expense-amount').value = "Amount of Expense";
-    document.getElementById('expense-vendor').value = "Vendor";
-}
+  document.getElementById("expense-date").value = "Date of Expense";
+  document.getElementById("expense-description").value = "Description";
+  document.getElementById("expense-amount").value = "Amount of Expense";
+  document.getElementById("expense-vendor").value = "Vendor";
+};
 
 window.onload = () => {
   // Temporary until this part is built propertly //
-  getLocalExpenses(window.localStorage.getItem("expenses"));
+  displayLocalExpenses(window.localStorage.getItem("expenses"));
   setDefaultInputValues();
   // End of temp code //
 };
 
-const getLocalExpenses = (expenses) => {
+const displayLocalExpenses = (expenses) => {
   var mainContentCell = document.querySelector(".main-cell");
   mainContentCell.innerText = expenses;
 };
@@ -40,7 +44,8 @@ const addNewExpense = (date, description, amount, vendor) => {
 };
 
 const setLocalExpenses = (newExpense) => {
-  const savedExpenses = JSON.parse(window.localStorage.getItem("expenses")) || [];
+  const savedExpenses =
+    JSON.parse(window.localStorage.getItem("expenses")) || [];
   savedExpenses.push(newExpense);
   window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
 };
