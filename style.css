@@ -1,0 +1,49 @@
+* {
+  margin: 0 auto;
+  padding: 0px;
+}
+body {
+  background-image: url("images/dollarSignLarge.png");
+  background-repeat: no-repeat;
+}
+h1 {
+  font-size: 28px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: black;
+}
+h2 {
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+}
+h3 {
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: darkslategray;
+}
+h4 {
+  font-size: 14px;
+  font-family: "Courier New", Courier, monospace;
+  color: darkslategray;
+}
+.body-table {
+  background-color: ;
+  border: 0px solid black;
+  font-size: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+}
+.main-table {
+  border: 1px solid black;
+  width: 800px;
+  font-size: 16px;
+}
+.header-table {
+  border: 1px solid black;
+  width: 800px;
+}
+.footer-table {
+  border: 1px solid black;
+  width: 800px;
+  text-align: center;
+}
