@@ -8,37 +8,36 @@ class Expense {
   }
 }
 
-// document.getElementById("add-expense-btn").addEventListener("click", (e) => {
-//   e.preventDefault;
-//   addNewExpense("3/15/2020", "desc text", "2.22", "McDonalds");
-// });
-
-document.querySelector("form").addEventListener("submit", (e) => {
-  e.preventDefault;
-  addNewExpense("3/15/2020", "desc text", "2.22", "McDonalds");
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  //e.preventDefault();
+  validateFormValues();
 });
 
+function validateFormValues() {
+    const date = document.getElementById('expense-date').value;
+    const description = document.getElementById('expense-description').value;
+    const amount = document.getElementById('expense-amount').value;
+    const vendor = document.getElementById('expense-vendor').value;
+    
+    addNewExpense(date, description, amount, vendor);
+}
+
 const setDefaultInputValues = () => {
-  document.getElementById("expense-date").value = "Date of Expense";
-  document.getElementById("expense-description").value = "Description";
-  document.getElementById("expense-amount").value = "Amount of Expense";
-  document.getElementById("expense-vendor").value = "Vendor";
+  document.getElementById("expense-date").value = "";
+  document.getElementById("expense-description").value = "";
+  document.getElementById("expense-amount").value = "";
+  document.getElementById("expense-vendor").value = "";
 };
 
 window.onload = () => {
-  // Temporary until this part is built propertly //
-  displayLocalExpenses(window.localStorage.getItem("expenses"));
+  const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
+  displayExpenses(savedExpenses);
   setDefaultInputValues();
-  // End of temp code //
-};
-
-const displayLocalExpenses = (expenses) => {
-  var mainContentCell = document.querySelector(".main-cell");
-  mainContentCell.innerText = expenses;
 };
 
 const addNewExpense = (date, description, amount, vendor) => {
-  const id = Date.now() + Math.random();
+  const id = Date.now() + Math.random(); 
   const newExpense = new Expense(id, date, description, amount, vendor);
   setLocalExpenses(newExpense);
 };
@@ -47,6 +46,7 @@ const setLocalExpenses = (newExpense) => {
   const savedExpenses =
     JSON.parse(window.localStorage.getItem("expenses")) || [];
   savedExpenses.push(newExpense);
+  displayExpenses(savedExpenses);
   window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
 };
 
@@ -59,3 +59,23 @@ const updateExistingExpense = (expense) => {
   savedExpenses[index] = expense;
   window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
 };
+
+function displayExpenses(expenses) {
+  var html = "<table border class='expenses-table'>";
+  html += "<td>Vendor</td>";
+  html += "<td>Description</td>";
+  html += "<td>Date</td>";
+  html += "<td>Amount</td>";
+  html += "<td><input id='delete-all' type='checkbox' class='check-box'></td>";
+  for (var i = 0; i < expenses.length; i++) {
+    html += "<tr>";
+    html += "<td>" + expenses[i].vendor + "</td>";
+    html += "<td>" + expenses[i].description + "</td>";
+    html += "<td>" + expenses[i].date + "</td>";
+    html += "<td>" + expenses[i].amount + "</td>";
+    html += "<td><input type='checkbox' class='delete-checkbox'></td>";
+    html += "</tr>";
+  }
+  html += "</table>";
+  document.getElementById("display-expenses").innerHTML = html;
+}

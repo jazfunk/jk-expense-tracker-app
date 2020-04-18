@@ -13,66 +13,71 @@
             <table class="header-table">
               <tr>
                 <td>
-                  <h1>"header"</h1>
+                  <h1>Expense Tracker</h1>
                 </td>
               </tr>
             </table>
           </header>
 
-          <br />
-
           <main>
-            <table class="input-table">
-              <tr>
-                <td>
-                  <form>
+            <form>
+              <table class="input-table">
+                <tr>
+                  <td>Date</td>
+                  <td>Description</td>
+                  <td>Vendor</td>
+                  <td>Amount</td>
+                </tr>
+                <tr>
+                  <td>
                     <input
                       id="expense-date"
-                      type="text"
+                      type="date"
                       class="input-textbox"
                     />
+                  </td>
+                  <td>
                     <input
                       id="expense-description"
                       type="text"
                       class="input-textbox"
                     />
-                    <br />
+                  </td>
+                  <td>
                     <input
                       id="expense-vendor"
                       type="text"
                       class="input-textbox"
                     />
+                  </td>
+                  <td>
                     <input
                       id="expense-amount"
-                      type="text"
+                      type="number"
+                      min=".00"
+                      step="any"
                       class="input-textbox"
                     />
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4">
                     <input
                       id="add-expense-btn"
                       type="submit"
                       value="Add Expenses"
                     />
-                  </form>
-                </td>
-              </tr>
-            </table>
-            <br>
+                  </td>
+                </tr>
+              </table>
+            </form>
+
             <table class="main-table">
               <tr>
-                <td class="main-cell">
-                  "main"
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                </td>
+                <td id="display-expenses" class="main-cell"></td>
               </tr>
             </table>
           </main>
-
-          <br />
 
           <footer>
             <table class="footer-table">
@@ -91,6 +96,7 @@
               </tr>
             </table>
           </footer>
+          
         </td>
       </tr>
     </table>
