@@ -5,6 +5,9 @@
 body {
   background-image: url("images/dollarSignLarge.png");
   background-repeat: no-repeat;
+  background-position: top;
+  background-color: #dddddd;
+  
 }
 h1 {
   font-size: 28px;
@@ -27,37 +30,82 @@ h4 {
   color: darkslategray;
 }
 .body-table {
-  background-color: ;
-  border: 0px solid black;
-  font-size: 12px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
-}
-.input-table {
-  border: 1px solid darkslategray;
-  width: 800px;
-  font-size: 16px;
-  text-align: center;
+  border: 0px solid #f4f4f4;
 }
 .main-table {
   border: 1px solid darkslategray;
-  width: 800px;
-  font-size: 16px;
+  width: 100%;
 }
 .header-table {
   border: 1px solid darkslategray;
-  width: 800px;
-}
-.footer-table {
-  border: 1px solid darkslategray;
-  width: 800px;
+  width: 600px;
   text-align: center;
+}
+.input-table {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+  padding-bottom: 1.25rem;
+  border: 1px solid darkslategray;
+  /* width: 100%; */
+}
+.input-inner-cell {
+    border: 1px solid black;
+    padding: 10px;
+}
+.input-table input:not(.my-buttons) {
+  margin: 0 0.25rem;
+  min-width: 25px;
+  border: 1px solid #dddddd;
+  border-left: 4px solid green;
+  border-radius: 3px;
+  transition: border-color 0.5s ease-out;
+}
+.input-textbox {
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 4px;
 }
 .expenses-table {
   border: 0px solid darkslategray;
+  border-spacing: 0px;
   width: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;  
+}
+.expenses-table tr:nth-child(even) {background: rgba(255, 255, 255, 0.22);}
+.expense-header-row {
+    border-bottom: 1px solid darkgreen;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;    
+    font-size: 14px;    
+    font-weight: bold;
+    color: darkslategray;
+    text-align: center;
+    padding: 3px 2px;
+    margin: 2px 2px;
+}
+.expense-data-row {
+    border: 0px solid green;
+    /* border-bottom: 1px solid black;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px; */
+    /* border-radius: 0px; */
+    font-size: 12px;
+    color: green;
+    padding: 3px 3px 2px 3px;
+}
+.my-buttons {
+  padding: 4px 22px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: darkslategrey;
+  box-shadow: 0 3px 4px 0 darkslategray, 0 2px 5px 0 darkslategray;
+}
+.footer-table {
+  border: 1px solid darkslategray;
+  width: 600px;
   text-align: center;
-  font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: darkslategray;
 }

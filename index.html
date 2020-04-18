@@ -23,49 +23,62 @@
             <form>
               <table class="input-table">
                 <tr>
-                  <td>Date</td>
-                  <td>Description</td>
-                  <td>Vendor</td>
-                  <td>Amount</td>
-                </tr>
-                <tr>
-                  <td>
+                  <td class="input-inner-cell">
                     <input
                       id="expense-date"
                       type="date"
                       class="input-textbox"
+                      placeholder="Date"
+                      required
                     />
-                  </td>
-                  <td>
-                    <input
-                      id="expense-description"
-                      type="text"
-                      class="input-textbox"
-                    />
-                  </td>
-                  <td>
+                    <br />
                     <input
                       id="expense-vendor"
                       type="text"
                       class="input-textbox"
+                      placeholder="Vendor"
+                      required
                     />
                   </td>
-                  <td>
+                  <td class="input-inner-cell">
+                    <input
+                      id="expense-description"
+                      type="text"
+                      class="input-textbox"
+                      placeholder="Description"
+                      required
+                    />
+                    <br />
                     <input
                       id="expense-amount"
                       type="number"
                       min=".00"
                       step="any"
                       class="input-textbox"
+                      placeholder="Amount"
+                      required
                     />
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="4">
+                  <td class="input-inner-cell" colspan="2">
                     <input
                       id="add-expense-btn"
                       type="submit"
-                      value="Add Expenses"
+                      value="Add New Expense"
+                      class="my-buttons"
+                    />
+                    <input
+                      id="delete-expenses-btn"
+                      type="button"
+                      value="Delete Selected"
+                      class="my-buttons"
+                    />
+                    <input
+                      id="clear-expenses-btn"
+                      type="button"
+                      value="Clear All"
+                      class="my-buttons"
                     />
                   </td>
                 </tr>
@@ -74,7 +87,7 @@
 
             <table class="main-table">
               <tr>
-                <td id="display-expenses" class="main-cell"></td>
+                <td id="display-expenses"></td>
               </tr>
             </table>
           </main>
@@ -96,7 +109,6 @@
               </tr>
             </table>
           </footer>
-          
         </td>
       </tr>
     </table>

@@ -61,19 +61,20 @@ const updateExistingExpense = (expense) => {
 };
 
 function displayExpenses(expenses) {
-  var html = "<table border class='expenses-table'>";
-  html += "<td>Vendor</td>";
-  html += "<td>Description</td>";
-  html += "<td>Date</td>";
-  html += "<td>Amount</td>";
-  html += "<td><input id='delete-all' type='checkbox' class='check-box'></td>";
+  var html = "<table border class='expenses-table'>"
+  html += "<tr>";
+  html += "<td class='expense-header-row'>Vendor</td>";
+  html += "<td class='expense-header-row'>Description</td>";
+  html += "<td class='expense-header-row'>Date</td>";
+  html += "<td class='expense-header-row'>Amount</td>";
+  html += "<td class='expense-header-row'><input id='delete-all' type='checkbox' class='check-box'></td></tr>";
   for (var i = 0; i < expenses.length; i++) {
     html += "<tr>";
-    html += "<td>" + expenses[i].vendor + "</td>";
-    html += "<td>" + expenses[i].description + "</td>";
-    html += "<td>" + expenses[i].date + "</td>";
-    html += "<td>" + expenses[i].amount + "</td>";
-    html += "<td><input type='checkbox' class='delete-checkbox'></td>";
+    html += "<td class='expense-data-row'>" + expenses[i].vendor + "</td>";
+    html += "<td class='expense-data-row'>" + expenses[i].description + "</td>";
+    html += "<td class='expense-data-row'>" + expenses[i].date + "</td>";
+    html += "<td class='expense-data-row'>" + expenses[i].amount + "</td>";
+    html += "<td class='expense-data-row'><input type='checkbox' class='delete-checkbox'></td>";
     html += "</tr>";
   }
   html += "</table>";
