@@ -6,118 +6,83 @@
   </head>
 
   <body>
-    <table class="body-table">
-      <tr>
-        <td>
-          <header>
-            <table class="header-table">
-              <tr>
-                <td>
-                  <h1>Expense Tracker</h1>
-                </td>
-              </tr>
-            </table>
-          </header>
+    <header>
+      <h1>Expense Tracker</h1>
+    </header>
 
-          <main>
-            <form id="expense-form">
-              <table class="input-table">
-                <tr>
-                  <td class="input-inner-cell">
-                    <input
-                      id="expense-date"
-                      type="date"
-                      class="input-textbox"
-                      required
-                    />
-                    <br />
-                    <br />
-                    <input
-                      id="expense-vendor"
-                      type="text"
-                      class="input-textbox"
-                      placeholder="Vendor"
-                      required
-                    />
-                  </td>
-                  <td class="input-inner-cell">
-                    <input
-                      id="expense-description"
-                      type="text"
-                      class="input-textbox"
-                      placeholder="Description"
-                      required
-                    />
-                    <br />
-                    <br />
-                    <input
-                      id="expense-amount"
-                      type="number"
-                      min=".00"
-                      step="any"
-                      class="input-textbox"
-                      placeholder="Amount"
-                      required
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td class="input-inner-cell" colspan="2">
-                    <input
-                      id="add-expense-btn"
-                      type="submit"
-                      value="Add New Expense"
-                      class="my-buttons"
-                    />
-                    <input
-                      id="delete-expenses-btn"
-                      type="button"
-                      value="Delete Selected"
-                      class="my-buttons"
-                    />
-                    <input
-                      id="clear-expenses-btn"
-                      type="button"
-                      value="Clear All"
-                      class="my-buttons"
-                    />
-                  </td>
-                </tr>
-              </table>
-            </form>
+    <main>
+      <form id="expense-form">
+        <div class="input-table">
+          <input
+            id="expense-date"
+            type="date"
+            class="input-textbox"
+            placeholder="mm/dd/YYYY"
+            required
+          />
+          <input
+            id="expense-vendor"
+            type="text"
+            class="input-textbox"
+            placeholder="Vendor"
+            required
+          />
+          <input
+            id="expense-description"
+            type="text"
+            class="input-textbox"
+            placeholder="Description"
+            required
+          />
+          <input
+            id="expense-amount"
+            type="number"
+            min=".00"
+            step="any"
+            class="input-textbox"
+            placeholder="Amount"
+            required
+          />
+          <input
+            id="add-expense-btn"
+            type="submit"
+            value="Add New Expense"
+            class="my-buttons"
+          />
+          <input
+            id="delete-expenses-btn"
+            type="button"
+            value="Delete Selected"
+            class="my-buttons"
+          />
+          <input
+            id="clear-expenses-btn"
+            type="button"
+            value="Clear All"
+            class="my-buttons"
+          />
+        </div>
+      </form>
 
-            <table class="main-table">
-              <tr>
-                <td>
-                  <h5><div id="undo-message"></div></h5>
-                </td>
-              </tr>
-              <tr>
-                <td id="display-expenses"></td>
-              </tr>
-            </table>
-          </main>
+      <div class="expenses-table">
+        <h5><div id="undo-message"></div></h5>
+        <table class="main-table">
+          <!-- Expenses Table Goes Here -->
+        </table>
+      </div>
+    </main>
 
-          <footer>
-            <table class="footer-table">
-              <tr>
-                <td>
-                  <h2>by Jeff King</h2>
-                  <h3>
-                    <a href="https://github.com/jazfunk">GitHub</a>
-                    |
-                    <a href="https://www.linkedin.com/in/jeffking222/"
-                      >LinkedIn</a
-                    >
-                  </h3>
-                  <h4>Software Development Mastermind</h4>
-                </td>
-              </tr>
-            </table>
-          </footer>
-        </td>
-      </tr>
-    </table>
+    <footer>
+      <div class="footer-table">
+        <h2>by Jeff King</h2>
+        <h3>
+          <a href="https://github.com/jazfunk">GitHub</a>
+          |
+          <a href="https://www.linkedin.com/in/jeffking222/">LinkedIn</a>
+        </h3>
+        <h4>Software Development Mastermind</h4>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

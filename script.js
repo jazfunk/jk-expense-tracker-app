@@ -1,17 +1,26 @@
+// class Expense {
+//   constructor(id, date, description, amount, vendor) {
+//     this.id = id;
+//     this.date = date;
+//     this.description = description;
+//     this.amount = amount;
+//     this.vendor = vendor;
+//   }
+// }
 class Expense {
   constructor(id, date, description, amount, vendor) {
-    this.id = id;
-    this.date = date;
-    this.description = description;
-    this.amount = amount;
     this.vendor = vendor;
+    this.description = description;
+    this.date = date;
+    this.amount = amount;
+    this.id = id;
   }
 }
 
 window.onload = () => {
   checkForUndo();
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  displayExpenses(savedExpenses.sort(compareDates));
+  displayExpensesNEW(savedExpenses.sort(compareDates));
   document.getElementById("expense-date").focus();
 };
 
@@ -70,7 +79,7 @@ const setLocalExpenses = (newExpense) => {
   const savedExpenses =
     JSON.parse(window.localStorage.getItem("expenses")) || [];
   savedExpenses.push(newExpense);
-  displayExpenses(savedExpenses);
+  displayExpensesNEW(savedExpenses);
   localStorage.setItem("expenses", JSON.stringify(savedExpenses));
   localStorage.removeItem("tempExpenses");
 };
@@ -115,39 +124,103 @@ const displayDate = (value) => {
   return dateFormtted;
 };
 
+const displayExpensesNEW = (savedSortedExpenses) => {
+  if (savedSortedExpenses.length > 1) {
+    let displayTo = document.querySelector("table");
+    let expenseHeaders = Object.keys(savedSortedExpenses[0]);
+    generateExpensesTable(displayTo, savedSortedExpenses);
+    generateExpensesTableHead(displayTo, expenseHeaders);
+  }
+};
+
+const generateExpensesTableHead = (displayTo, expenseHeaders) => {
+  let thead = displayTo.createTHead();
+  let row = thead.insertRow();
+  for (let expense of expenseHeaders) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(expense);
+    let headerText = "";
+    switch (expense) {
+      case "id":
+        // Hide ID column
+        return;
+        break;
+      case "vendor":
+        headerText = "Vendor";
+        break;
+      case "description":
+        headerText = "Description";
+        break;
+      case "date":
+        headerText = "Date";
+        break;
+      case "amount":
+        headerText = "$";
+        break;
+      default:
+    }
+    text.textContent = headerText;
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+};
+
+const generateExpensesTable = (displayTo, expenses) => {
+  for (let element of expenses) {
+    let row = displayTo.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      cell.className = appendClassName(key);
+      let text = document.createTextNode(element[key]);
+      switch (key) {
+        case "date":
+          text.textContent = displayDate(text.textContent);
+          break;
+        case "amount":
+          text.textContent = displayCurrency(text.textContent);
+          break;
+        default:
+      }
+      cell.appendChild(text);
+    }
+  }
+};
+
+const appendClassName = (value) => `${value}-format`;
+
 // Refactor this using document.createElement()
 // .innerHTML is potentially unsafe
-const displayExpenses = (expenses) => {
-  var html = "<table border class='expenses-table'>";
-  html += "<tr>";
-  html += "<td class='expense-header-row'>Vendor</td>";
-  html += "<td class='expense-header-row'>Description</td>";
-  html += "<td class='expense-header-row'>Date</td>";
-  html += "<td class='expense-header-row'>$</td>";
-  html +=
-    "<td class='expense-header-row'><input id='delete-all' type='checkbox' class='check-box'></td></tr>";
-  for (var i = 0; i < expenses.length; i++) {
-    html += "<tr>";
-    html +=
-      "<td class='expense-data-row vendor-format'>" +
-      expenses[i].vendor +
-      "</td>";
-    html +=
-      "<td class='expense-data-row description-format'>" +
-      expenses[i].description +
-      "</td>";
-    html +=
-      "<td class='expense-data-row  date-format'>" +
-      displayDate(expenses[i].date) +
-      "</td>";
-    html +=
-      "<td class='expense-data-row enMoney'>" +
-      displayCurrency(expenses[i].amount) +
-      "</td>";
-    html +=
-      "<td class='expense-data-row checkbox-format'><input type='checkbox' class='delete-checkbox'></td>";
-    html += "</tr>";
-  }
-  html += "</table>";
-  document.getElementById("display-expenses").innerHTML = html;
-};
+// const displayExpenses = (expenses) => {
+//   var html = "<table border class='expenses-table'>";
+//   html += "<tr>";
+//   html += "<td class='expense-header-row'>Vendor</td>";
+//   html += "<td class='expense-header-row'>Description</td>";
+//   html += "<td class='expense-header-row'>Date</td>";
+//   html += "<td class='expense-header-row'>$</td>";
+//   html +=
+//     "<td class='expense-header-row'><input id='delete-all' type='checkbox' class='check-box'></td></tr>";
+//   for (var i = 0; i < expenses.length; i++) {
+//     html += "<tr>";
+//     html +=
+//       "<td class='expense-data-row vendor-format'>" +
+//       expenses[i].vendor +
+//       "</td>";
+//     html +=
+//       "<td class='expense-data-row description-format'>" +
+//       expenses[i].description +
+//       "</td>";
+//     html +=
+//       "<td class='expense-data-row  date-format'>" +
+//       displayDate(expenses[i].date) +
+//       "</td>";
+//     html +=
+//       "<td class='expense-data-row enMoney'>" +
+//       displayCurrency(expenses[i].amount) +
+//       "</td>";
+//     html +=
+//       "<td class='expense-data-row checkbox-format'><input type='checkbox' class='delete-checkbox'></td>";
+//     html += "</tr>";
+//   }
+//   html += "</table>";
+//   document.getElementById("display-expenses").innerHTML = html;
+// };

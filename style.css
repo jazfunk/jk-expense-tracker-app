@@ -26,6 +26,7 @@ h1 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: darkslategray;
   text-shadow: 2px 2px 2px white;
+  text-align: center;
 }
 h2 {
   font-size: 16px;
@@ -51,38 +52,20 @@ h5 {
   padding: 1px 1px;
   text-align: center;
 }
-.body-table {
-  border: 0px solid #f4f4f4;
-  width: 100%;
-}
 .main-table {
-  border: 0px solid darkslategray;
   width: 100%;
-}
-.header-table {
-  /* border: 1px solid darkslategray;   */
-  border-top: 0px;
-  border-right: 0px;
-  border-bottom: 1px solid darkgreen;
-  border-left: 0px;
-  width: 100%;
-  text-align: center;
+  border-spacing: 0px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .input-table {
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border: 0px solid darkslategray;
-  width: 100%;
-}
-.input-inner-cell {
-  border: 0px solid black;
-  padding: 10px;
-  text-align: center;
+  padding: 0.75rem;
 }
 .input-table input:not(.my-buttons) {
-  width: 200px;
+  width: 140px;
   border: 1px solid #aaaaaa;
   border-left: 4px solid green;
   border-radius: 5px;
@@ -97,16 +80,10 @@ h5 {
 input:not([type="date"]) {
   line-height: 20px;
 }
-.expenses-table {
-  border: 0px solid darkslategray;
-  border-spacing: 0px;
-  width: 100%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 .expenses-table tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.22);
 }
-.expense-header-row {
+th {
   background: rgba(0, 0, 0, 0.04);
   border-top: 0px;
   border-right: 1px solid green;
@@ -121,15 +98,15 @@ input:not([type="date"]) {
   padding: 3px 2px;
   margin: 2px 2px;
 }
-.expense-data-row {
-  border: 0px solid green;  
+td {
+  border: 0px solid green;
   border-radius: 2px;
   font-size: 13px;
   color: green;
   padding: 10px 10px 8px 10px;
 }
 .my-buttons {
-  padding: 4px 22px;
+  padding: 4px 8px;
   border-radius: 5px;
   font-size: 16px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -149,6 +126,9 @@ input:not([type="date"]) {
 .description-format {
   font-size: 11px;
 }
+.id-format {
+  display: none;
+}
 .date-format {
   text-align: center;
   font-size: 12px;
@@ -158,7 +138,12 @@ input:not([type="date"]) {
   padding-right: 4px;
   font-size: 12px;
 }
-.enMoney::before {
+.amount-format {
+  text-align: right;
+  padding-right: 4px;
+  font-size: 12px;
+}
+.amount-format::before {
   content: "$";
 }
 .checkbox-format {
