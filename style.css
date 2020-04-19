@@ -44,8 +44,16 @@ h4 {
   color: darkgreen;
   padding: 1px 1px;
 }
+h5 {
+  font-size: 28px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: darkgreen;
+  padding: 1px 1px;
+  text-align: center;
+}
 .body-table {
   border: 0px solid #f4f4f4;
+  width: 100%;
 }
 .main-table {
   border: 0px solid darkslategray;
@@ -66,7 +74,7 @@ h4 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border: 0px solid darkslategray;
-  /* width: 100%; */
+  width: 100%;
 }
 .input-inner-cell {
   border: 0px solid black;
@@ -74,10 +82,8 @@ h4 {
   text-align: center;
 }
 .input-table input:not(.my-buttons) {
-  margin: 0 0.25rem;
-  min-width: 25px;
   width: 200px;
-  border: 1px solid #dddddd;
+  border: 1px solid #aaaaaa;
   border-left: 4px solid green;
   border-radius: 5px;
   transition: border-color 0.5s ease-out;
@@ -86,7 +92,10 @@ h4 {
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: green;
-  padding: 6px 4px 4px 4px;
+  padding: 6px 4px 4px 6px;
+}
+input:not([type="date"]) {
+  line-height: 20px;
 }
 .expenses-table {
   border: 0px solid darkslategray;
@@ -113,7 +122,7 @@ h4 {
   margin: 2px 2px;
 }
 .expense-data-row {
-  border: 0px solid green;
+  border: 0px solid green;  
   border-radius: 2px;
   font-size: 13px;
   color: green;
@@ -125,7 +134,7 @@ h4 {
   font-size: 16px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: darkslategray;
-  box-shadow: 0 3px 4px 0 darkgreen, 0 2px 5px 0 darkslategray;
+  box-shadow: 0 2px 4px 0 darkgreen;
 }
 .footer-table {
   border-top: 1px solid green;

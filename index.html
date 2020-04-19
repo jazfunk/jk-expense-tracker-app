@@ -20,7 +20,7 @@
           </header>
 
           <main>
-            <form>
+            <form id="expense-form">
               <table class="input-table">
                 <tr>
                   <td class="input-inner-cell">
@@ -28,9 +28,9 @@
                       id="expense-date"
                       type="date"
                       class="input-textbox"
-                      placeholder="Date"
                       required
                     />
+                    <br />
                     <br />
                     <input
                       id="expense-vendor"
@@ -48,6 +48,7 @@
                       placeholder="Description"
                       required
                     />
+                    <br />
                     <br />
                     <input
                       id="expense-amount"
@@ -86,6 +87,11 @@
             </form>
 
             <table class="main-table">
+              <tr>
+                <td>
+                  <h5><div id="undo-message"></div></h5>
+                </td>
+              </tr>
               <tr>
                 <td id="display-expenses"></td>
               </tr>
