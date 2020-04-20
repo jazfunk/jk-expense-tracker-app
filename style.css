@@ -80,7 +80,23 @@ h5 {
 input:not([type="date"]) {
   line-height: 20px;
 }
-.expenses-table tr:nth-child(even) {
+
+#expense-date {
+  width: 142px;
+}
+#expense-vendor {
+  width: 142px;
+}
+#expense-description {
+  width: 200px;
+}
+#expense-amount {
+  width: 65px;
+}
+tr:hover:not(th) {
+  background-color: white;
+}
+tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.22);
 }
 th {
@@ -128,6 +144,7 @@ td {
 }
 .id-format {
   display: none;
+  text-align: center;
 }
 .date-format {
   text-align: center;
