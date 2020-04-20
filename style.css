@@ -32,6 +32,7 @@ h2 {
   font-size: 16px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: black;
+  text-align: center;
 }
 h3 {
   font-size: 14px;
@@ -59,6 +60,7 @@ h5 {
 }
 .input-table {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
@@ -82,10 +84,10 @@ input:not([type="date"]) {
 }
 
 #expense-date {
-  width: 142px;
+  width: 145px;
 }
 #expense-vendor {
-  width: 142px;
+  width: 140px;
 }
 #expense-description {
   width: 200px;

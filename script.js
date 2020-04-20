@@ -68,10 +68,6 @@ const setLocalExpenses = (newExpense) => {
   localStorage.removeItem("tempExpenses");
 };
 
-
-
-
-
 // Function untested
 const updateExistingExpense = (expense) => {
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
@@ -83,25 +79,17 @@ const updateExistingExpense = (expense) => {
   window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
 };
 
-
-
-
-
 const deleteExpense = (expense) => {
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  const matchingExpense = savedExpenses.find((savedExpense) => {
-    return expense.id === savedExpense.id;
-  });
+  const matchingExpense = savedExpenses.find(savedExpense => parseFloat(expense.id) === savedExpense.id);
+  
   const index = savedExpenses.indexOf(matchingExpense);
   if (index > -1) {
     savedExpenses.splice(index, 1);
-    localStorage.setItem("expenses", JSON.stringify(savedExpenses));
+    localStorage.setItem("expenses", JSON.stringify(savedExpenses));    
+    location.reload();
   }
 };
-
-
-
-
 
 const displayCurrency = (value) => {
   const dec = value.split(".")[1];
@@ -141,9 +129,7 @@ const generateExpensesTableHead = (displayTo, expenseHeaders) => {
     switch (expense) {
       case "id":
         // Hide ID column
-        return;
-        text.textContent = "ID";
-        break;
+        return;        
       case "amount":
         text.textContent = "$";
         break;
@@ -175,68 +161,32 @@ const generateExpensesTable = (displayTo, expenses) => {
       cell.appendChild(text);
     }
   }
-  testingDelete();
 };
 
-
-
-const tableRow = document.querySelector('table').addEventListener("click", (e) => {
-  // console.log(e.target.parentElement);
-  // console.log(e.target.parentElement.querySelector('.id-format').textContent);
-  const selectedRow = e.target.parentElement;
-  
-  const selectedRowID = selectedRow.querySelector('.id-format').textContent;
-  const selectedRowDate = selectedRow.querySelector('.date-format').textContent;
-  const selectedRowVendor = selectedRow.querySelector('.vendor-format').textContent;
-  const selectedRowDescription = selectedRow.querySelector('.description-format').textContent;
-  const selectedRowAmount = selectedRow.querySelector('.amount-format').textContent;
-
-  // selectedRowVendor, selectedRowDescription, selectedRowDate, selectedRowAmount, selectedRowID
-  const exp = new Expense(selectedRowVendor, selectedRowDescription, selectedRowDate, selectedRowAmount, selectedRowID);
-  console.log(exp);
-  
-  deleteExpense(exp);
-
-  // console.log(selectedRowID);
-
-  // const savedExpenses = JSON.parse(localStorage.getItem("expenses"));
-  // console.log(savedExpenses);
-
-  // const matchingExpense = savedExpenses.find(() => savedExpenses.id === selectedRowID);
-  // const index = savedExpenses.indexOf(matchingExpense);
-  // if (index > -1) {
-  //   savedExpenses.splice(index, 1);
-  //   localStorage.setItem("expenses", JSON.stringify(savedExpenses));
-  // }
-
-});
-
-
-
-function testingDelete() {
-  var index,
-    table = document.querySelector("table");
-  for (var i = 0; i < table.rows.length; i++) {
-    table.rows[i].onClick = function () {
-      index = this.rowIndex;
-      console.log(index);
-    };
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const tableRowClick = document
+  .querySelector("table")
+  .addEventListener("click", (e) => {
+    const selectedRow = e.target.parentElement;
+    const selectedRowID = selectedRow.querySelector(".id-format")
+      .textContent;
+    const selectedRowDate = selectedRow.querySelector(".date-format")
+      .textContent;
+    const selectedRowVendor = selectedRow.querySelector(".vendor-format")
+      .textContent;
+    const selectedRowDescription = selectedRow.querySelector(
+      ".description-format"
+    ).textContent;
+    const selectedRowAmount = selectedRow.querySelector(".amount-format")
+      .textContent;
+    const expenseToDelete = new Expense(
+      selectedRowVendor,
+      selectedRowDescription,
+      selectedRowDate,
+      selectedRowAmount,
+      selectedRowID
+    );
+    deleteExpense(expenseToDelete);
+  });
 
 const checkForUndo = () => {
   const undoLink = document.getElementById("undo-message");
