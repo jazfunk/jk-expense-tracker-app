@@ -139,7 +139,7 @@ const generateExpensesTable = (displayTo, expenses) => {
     let row = displayTo.insertRow();
     for (key in element) {
       let cell = row.insertCell();
-      cell.className = `${key}-format`
+      cell.className = `${key}-format`;
       let text = document.createTextNode(element[key]);
       switch (key) {
         case "date":
@@ -179,7 +179,7 @@ const tableRowClick = document
       );
       deleteExpense(expenseToDelete);
     } catch (err) {
-      // in lieu of figuring out how to check for null
+      // in lieu of checking for null
       // I just put a try/catch block 
       console.log(err.message);
     }
