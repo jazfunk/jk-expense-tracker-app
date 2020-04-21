@@ -74,13 +74,14 @@ const setLocalExpenses = (newExpense) => {
 
 const deleteExpense = (expense) => {
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  const matchingExpense = savedExpenses.find(savedExpense => parseFloat(expense.id) === savedExpense.id);
-  
+  const matchingExpense = savedExpenses.find(
+    (savedExpense) => parseFloat(expense.id) === savedExpense.id
+  );
   const index = savedExpenses.indexOf(matchingExpense);
   if (index > -1) {
     savedExpenses.splice(index, 1);
-    localStorage.setItem("expenses", JSON.stringify(savedExpenses));   
-    localStorage.setItem("deletedExpense", JSON.stringify(matchingExpense)) 
+    localStorage.setItem("expenses", JSON.stringify(savedExpenses));
+    localStorage.setItem("deletedExpense", JSON.stringify(matchingExpense));
     location.reload();
   }
 };
@@ -91,8 +92,7 @@ const displayCurrency = (value) => {
   return addCommasToDollars(Number(value).toFixed(len));
 };
 
-const addCommasToDollars = (value) =>
-  value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const addCommasToDollars = (value) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 const displayDate = (value) => {
   const d = new Date(`${value} 00:00:00`);
@@ -123,7 +123,7 @@ const generateExpensesTableHead = (displayTo, expenseHeaders) => {
     switch (head) {
       case "id":
         // Hide ID column
-        return;        
+        return;
       case "amount":
         text.textContent = "$";
         break;
@@ -160,14 +160,14 @@ const tableRowClick = document
   .addEventListener("click", (e) => {
     try {
       const selectedRow = e.target.parentElement;
-      const selectedRowID = selectedRow.querySelector(".id-format").textContent;
+      const selectedRowID = selectedRow.querySelector(".id-format")
+        .textContent;
       const selectedRowDate = selectedRow.querySelector(".date-format")
         .textContent;
       const selectedRowVendor = selectedRow.querySelector(".vendor-format")
         .textContent;
-      const selectedRowDescription = selectedRow.querySelector(
-        ".description-format"
-      ).textContent;
+      const selectedRowDescription = selectedRow.querySelector(".description-format")
+        .textContent;
       const selectedRowAmount = selectedRow.querySelector(".amount-format")
         .textContent;
       const expenseToDelete = new Expense(
@@ -180,7 +180,7 @@ const tableRowClick = document
       deleteExpense(expenseToDelete);
     } catch (err) {
       // in lieu of checking for null
-      // I just put a try/catch block 
+      // I just put a try/catch block
       console.log(err.message);
     }
   });
