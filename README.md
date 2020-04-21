@@ -1,6 +1,6 @@
 # JavaScript Expense Tracker App
 
-A simple applicatoin to track expenses.  Written entirely in pure JavaScript, HTML, and CSS.  
+A simple application to track expenses.  Written entirely in pure JavaScript, HTML, and CSS.  
 
 ## Links
 
@@ -20,7 +20,7 @@ This application came together rather quickly, and it was a lot of fun.  In an a
 
 Additionally, as I've become more proficient with arrow functions, incorporating them has led to much cleaner code, and less global variables.  With creative use of CSS, this application has a smooth look and fast responsiveness. 
 
-Learning how to properly and safely display an object array in a table, using the "createElement()" method was a revelation for me.  Very much looking forward to incorporating the techniques and methods learned whlie developing this app, into future projects.
+Learning how to properly and safely display an object array in a table, using the "createElement()" method, was a revelation for me.  Looking forward to incorporating the techniques and methods learned whlie developing this app, into future projects.
 
 ## Author
 
