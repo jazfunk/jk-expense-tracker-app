@@ -7,7 +7,7 @@ body {
   background-repeat: no-repeat;
   background-position: top;
   background-size: 50% 100%;
-  background-color: #dddddd;
+  background-color: #eeeeee;
 }
 a:link {
   color: black;
@@ -47,11 +47,16 @@ h4 {
   padding: 1px 1px;
 }
 h5 {
-  font-size: 28px;
+  font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: darkgreen;
+  color: green;
   padding: 1px 1px;
   text-align: center;
+}
+h5:hover {
+  color: greenyellow;
+  text-shadow: 2px 2px 2px darkgreen;
+
 }
 .main-table {
   width: 100%;
@@ -60,7 +65,7 @@ h5 {
 }
 .input-table {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
@@ -84,19 +89,20 @@ input:not([type="date"]) {
 }
 
 #expense-date {
-  width: 145px;
+  width: 160px;
 }
 #expense-vendor {
-  width: 140px;
+  width: 160px;
 }
 #expense-description {
-  width: 200px;
+  width: 250px;
 }
 #expense-amount {
   width: 80px;
 }
 tbody tr:hover {
-  background-color: white;
+  /* background-color: white; */
+  background: rgba(0, 255, 0, 0.22);
 }
 tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.22);
@@ -110,7 +116,7 @@ th {
   border-radius: 2px;
   font-size: 14px;
   font-weight: bold;
-  color: darkgreen;
+  color: green;
   text-align: center;
   text-shadow: 0 0 6px white;
   padding: 3px 2px;
@@ -130,6 +136,10 @@ td {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: darkslategray;
   box-shadow: 0 2px 4px 0 darkgreen;
+}
+.my-buttons:hover {
+  color: green;
+  text-shadow: 1px 1px 3px greenyellow;
 }
 .footer-table {
   border-top: 1px solid green;
@@ -154,8 +164,9 @@ td {
 }
 .amount-format {
   text-align: right;
-  padding-right: 4px;
+  padding-right: 12px;
   font-size: 12px;
+  font-weight: bold;
 }
 .amount-format::before {
   content: "$";

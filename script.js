@@ -9,7 +9,8 @@ class Expense {
 }
 
 window.onload = () => {
-  checkForUndo();
+  checkForUndoAll();
+  checkForUndoExpense();
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
   displayExpenses(savedExpenses.sort(compareDates));
   document.getElementById("expense-date").focus();
@@ -57,6 +58,7 @@ const setLocalExpenses = (newExpense) => {
   displayExpenses(savedExpenses);
   localStorage.setItem("expenses", JSON.stringify(savedExpenses));
   localStorage.removeItem("tempExpenses");
+  localStorage.removeItem("deletedExpense");
 };
 
 // // Function untested
@@ -77,7 +79,8 @@ const deleteExpense = (expense) => {
   const index = savedExpenses.indexOf(matchingExpense);
   if (index > -1) {
     savedExpenses.splice(index, 1);
-    localStorage.setItem("expenses", JSON.stringify(savedExpenses));    
+    localStorage.setItem("expenses", JSON.stringify(savedExpenses));   
+    localStorage.setItem("deletedExpense", JSON.stringify(matchingExpense)) 
     location.reload();
   }
 };
@@ -182,18 +185,37 @@ const tableRowClick = document
     }
   });
 
-const checkForUndo = () => {
+const checkForUndoAll = () => {
   const undoLink = document.getElementById("undo-message");
-  const undoDisplayText = "Expenses Deleted, click here to restore.";
+  const undoDisplayText = "All Expenses Deleted, click here to restore.";
   const deletedExpenses = localStorage.getItem("tempExpenses") || [];
   undoLink.textContent = deletedExpenses.length > 0 ? undoDisplayText : "";
 };
 
-const undoLink = document
+const undoAllExpensesLink = document
   .getElementById("undo-message")
   .addEventListener("click", (e) => {
     const tempExpenses = localStorage.getItem("tempExpenses");
     localStorage.setItem("expenses", tempExpenses);
     localStorage.removeItem("tempExpenses");
+    location.reload();
+  });
+
+const checkForUndoExpense = () => {
+  const undoExpenseLink = document.getElementById("undo-expense-message");
+  const undoExpenseDisplayText = "Expense Deleted, click here to restore";
+  const deletedExpense = localStorage.getItem("deletedExpense") || [];
+  undoExpenseLink.textContent =
+    deletedExpense.length > 0 ? undoExpenseDisplayText : "";
+};
+
+const undoExpenseLink = document
+  .getElementById("undo-expense-message")
+  .addEventListener("click", (e) => {
+    const tempExpense = JSON.parse(localStorage.getItem("deletedExpense"));
+    const savedExpenses = JSON.parse(localStorage.getItem("expenses"));
+    savedExpenses.push(tempExpense);
+    localStorage.setItem("expenses", JSON.stringify(savedExpenses));
+    localStorage.removeItem("deletedExpense");
     location.reload();
   });
