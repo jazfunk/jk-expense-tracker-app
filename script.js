@@ -61,22 +61,9 @@ const setLocalExpenses = (newExpense) => {
   localStorage.removeItem("deletedExpense");
 };
 
-// // Function untested
-// const updateExistingExpense = (expense) => {
-//   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-//   const matchingExpense = savedExpenses.find(
-//     () => expense.id === savedExpenses.id);
-
-//   const index = savedExpenses.indexOf(matchingExpense);
-//   savedExpenses[index] = expense;
-//   window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
-// };
-
 const deleteExpense = (expense) => {
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  const matchingExpense = savedExpenses.find(
-    (savedExpense) => parseFloat(expense.id) === savedExpense.id
-  );
+  const matchingExpense = savedExpenses.find((savedExpense) => parseFloat(expense.id) === savedExpense.id);
   const index = savedExpenses.indexOf(matchingExpense);
   if (index > -1) {
     savedExpenses.splice(index, 1);
@@ -121,9 +108,8 @@ const generateExpensesTableHead = (displayTo, expenseHeaders) => {
     let t = text.textContent;
     text.textContent = `${t.charAt(0).toUpperCase()}${t.slice(1)}`;
     switch (head) {
-      case "id":
-        // Hide ID column
-        return;
+      case "id":        
+        return; // Hide ID column
       case "amount":
         text.textContent = "$";
         break;
@@ -179,8 +165,6 @@ const tableRowClick = document
       );
       deleteExpense(expenseToDelete);
     } catch (err) {
-      // in lieu of checking for null
-      // I just put a try/catch block
       console.log(err.message);
     }
   });

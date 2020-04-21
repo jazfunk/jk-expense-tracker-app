@@ -64,9 +64,9 @@ h5:hover {
 }
 .input-table {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
   margin: 0 auto;
   padding: 0.75rem;
 }
@@ -157,6 +157,6 @@ td {
   font-size: 12px;
   font-weight: bold;
 }
-.amount-format::before {
+.amount-format:before {
   content: "$";
 }
