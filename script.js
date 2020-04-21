@@ -1,12 +1,3 @@
-// class Expense {
-//   constructor(id, date, description, amount, vendor) {
-//     this.id = id;
-//     this.date = date;
-//     this.description = description;
-//     this.amount = amount;
-//     this.vendor = vendor;
-//   }
-// }
 class Expense {
   constructor(vendor, description, date, amount, id) {
     this.vendor = vendor;
@@ -68,16 +59,16 @@ const setLocalExpenses = (newExpense) => {
   localStorage.removeItem("tempExpenses");
 };
 
-// Function untested
-const updateExistingExpense = (expense) => {
-  const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  const matchingExpense = savedExpenses.find(
-    () => expense.id === savedExpenses.id);
+// // Function untested
+// const updateExistingExpense = (expense) => {
+//   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
+//   const matchingExpense = savedExpenses.find(
+//     () => expense.id === savedExpenses.id);
 
-  const index = savedExpenses.indexOf(matchingExpense);
-  savedExpenses[index] = expense;
-  window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
-};
+//   const index = savedExpenses.indexOf(matchingExpense);
+//   savedExpenses[index] = expense;
+//   window.localStorage.setItem("expenses", JSON.stringify(savedExpenses));
+// };
 
 const deleteExpense = (expense) => {
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
@@ -121,12 +112,12 @@ const displayExpenses = (savedSortedExpenses) => {
 const generateExpensesTableHead = (displayTo, expenseHeaders) => {
   let thead = displayTo.createTHead();
   let row = thead.insertRow();
-  for (let expense of expenseHeaders) {
+  for (let head of expenseHeaders) {
     let th = document.createElement("th");
-    let text = document.createTextNode(expense);
+    let text = document.createTextNode(head);
     let t = text.textContent;
     text.textContent = `${t.charAt(0).toUpperCase()}${t.slice(1)}`;
-    switch (expense) {
+    switch (head) {
       case "id":
         // Hide ID column
         return;        
@@ -140,14 +131,12 @@ const generateExpensesTableHead = (displayTo, expenseHeaders) => {
   }
 };
 
-const appendClassName = (value) => `${value}-format`;
-
 const generateExpensesTable = (displayTo, expenses) => {
   for (let element of expenses) {
     let row = displayTo.insertRow();
     for (key in element) {
       let cell = row.insertCell();
-      cell.className = appendClassName(key);
+      cell.className = `${key}-format`
       let text = document.createTextNode(element[key]);
       switch (key) {
         case "date":
@@ -166,26 +155,31 @@ const generateExpensesTable = (displayTo, expenses) => {
 const tableRowClick = document
   .querySelector("table")
   .addEventListener("click", (e) => {
-    const selectedRow = e.target.parentElement;
-    const selectedRowID = selectedRow.querySelector(".id-format")
-      .textContent;
-    const selectedRowDate = selectedRow.querySelector(".date-format")
-      .textContent;
-    const selectedRowVendor = selectedRow.querySelector(".vendor-format")
-      .textContent;
-    const selectedRowDescription = selectedRow.querySelector(
-      ".description-format"
-    ).textContent;
-    const selectedRowAmount = selectedRow.querySelector(".amount-format")
-      .textContent;
-    const expenseToDelete = new Expense(
-      selectedRowVendor,
-      selectedRowDescription,
-      selectedRowDate,
-      selectedRowAmount,
-      selectedRowID
-    );
-    deleteExpense(expenseToDelete);
+    try {
+      const selectedRow = e.target.parentElement;
+      const selectedRowID = selectedRow.querySelector(".id-format").textContent;
+      const selectedRowDate = selectedRow.querySelector(".date-format")
+        .textContent;
+      const selectedRowVendor = selectedRow.querySelector(".vendor-format")
+        .textContent;
+      const selectedRowDescription = selectedRow.querySelector(
+        ".description-format"
+      ).textContent;
+      const selectedRowAmount = selectedRow.querySelector(".amount-format")
+        .textContent;
+      const expenseToDelete = new Expense(
+        selectedRowVendor,
+        selectedRowDescription,
+        selectedRowDate,
+        selectedRowAmount,
+        selectedRowID
+      );
+      deleteExpense(expenseToDelete);
+    } catch (err) {
+      // in lieu of figuring out how to check for null
+      // I just put a try/catch block 
+      console.log(err.message);
+    }
   });
 
 const checkForUndo = () => {
