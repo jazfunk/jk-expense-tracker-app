@@ -11,66 +11,84 @@
       <h2>Click Row to Delete</h2>
     </header>
 
-    <main>
-      <form id="input-expense-form">
-        <nav class="input-form">
-          <input
-            id="expense-date"
-            type="date"
-            class="input-textbox"
-            placeholder="mm/dd/YYYY"
-            required
-          />
-          <input
-            id="expense-vendor"
-            type="text"
-            class="input-textbox"
-            placeholder="Vendor"
-            required
-          />
-          <input
-            id="expense-description"
-            type="text"
-            class="input-textbox"
-            placeholder="Description"
-            required
-          />
-          <input
-            id="expense-amount"
-            type="number"
-            min=".00"
-            step="any"
-            class="input-textbox"
-            placeholder="0.00"
-            required
-          />
-          <input
-            id="add-expense-btn"
-            type="submit"
-            value="Add New Expense"
-            class="my-buttons"
-          />
-          <input
-            id="clear-expenses-btn"
-            type="button"
-            value="Clear All"
-            class="my-buttons"
-          />
-        </nav>
-      </form>
-      <div class="expenses-table">
-        <h5>
-          <div id="undo-message"></div>
-          <div id="undo-expense-message"></div>
-        </h5>
-        <table class="main-table">
-          <!-- Expenses Table Goes Here -->
-        </table>
-      </div>
+    <main>      
+      <div class="main-display">
+        <div class="form-display">
+          <form id="input-expense-form">
+            <div class="input-form">
+              <div class="input-date">
+                <input
+                  id="expense-date"
+                  type="date"
+                  class="input-textbox"
+                  placeholder="mm/dd/YYYY"
+                  required
+                />
+              </div>
+              <div class="input-vendor">
+                <input
+                  id="expense-vendor"
+                  type="text"
+                  class="input-textbox"
+                  placeholder="Vendor"
+                  required
+                />
+              </div>
+              <div class="input-description">
+                <input
+                  id="expense-description"
+                  type="text"
+                  class="input-textbox"
+                  placeholder="Description"
+                  required
+                />
+              </div>
+              <div class="input-amount">
+                <input
+                  id="expense-amount"
+                  type="number"
+                  min=".00"
+                  step="any"
+                  class="input-textbox"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+              <div class="input-add-new">
+                <input
+                  id="add-expense-btn"
+                  type="submit"
+                  value="Add New Expense"
+                  class="my-buttons"
+                />
+              </div>
+              <div class="input-clear-all">
+                <input
+                  id="clear-expenses-btn"
+                  type="button"
+                  value="Clear All"
+                  class="my-buttons"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="table-display">
+          <div class="expenses-table">
+            <table class="main-table">
+              <!-- Expenses Table Goes Here -->
+            </table>
+          </div>
+        </div>
+      </div>      
     </main>
 
     <footer>
       <div class="footer-table">
+        <h5>
+          <div id="undo-message"></div>
+          <div id="undo-expense-message"></div>
+        </h5>
         <h2>by Jeff King</h2>
         <h3>
           <a href="https://github.com/jazfunk">GitHub</a>
