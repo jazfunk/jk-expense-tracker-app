@@ -12,8 +12,8 @@
     </header>
 
     <main>
-      <form id="expense-form">
-        <div class="input-table">
+      <form id="input-expense-form">
+        <nav class="input-form">
           <input
             id="expense-date"
             type="date"
@@ -56,11 +56,13 @@
             value="Clear All"
             class="my-buttons"
           />
-        </div>
+        </nav>
       </form>
-
       <div class="expenses-table">
-        <h5><div id="undo-message"></div><div id="undo-expense-message"></div></h5>
+        <h5>
+          <div id="undo-message"></div>
+          <div id="undo-expense-message"></div>
+        </h5>
         <table class="main-table">
           <!-- Expenses Table Goes Here -->
         </table>

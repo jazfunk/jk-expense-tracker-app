@@ -26,7 +26,7 @@ const clearButton = document
   });
 
 const inputForm = document
-  .getElementById("expense-form")
+  .getElementById("input-expense-form")
   .addEventListener("submit", () => {
     const date = document.getElementById("expense-date").value;
     const description = document.getElementById("expense-description").value;

@@ -7,7 +7,7 @@ body {
   background-repeat: no-repeat;
   background-position: top;
   background-size: 50% 100%;
-  background-color: #eeeeee;
+  background-color: #dddddd;
 }
 a:link {
   color: black;
@@ -62,16 +62,11 @@ h5:hover {
   border-spacing: 0px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.input-table {
+.input-form {
   display: flex;
-  align-items: stretch;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  padding: 0.75rem;
 }
-.input-table input:not(.my-buttons) {
-  width: 140px;
+.input-form input:not(.my-buttons) {
+  /* width: 140px; */
   border: 1px solid #aaaaaa;
   border-left: 4px solid green;
   border-radius: 5px;
@@ -80,12 +75,12 @@ h5:hover {
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: green;
-  padding: 6px 4px 4px 6px;
+  /* padding: 6px 4px 4px 6px; */
 }
-input:not([type="date"]) {
+/* input:not([type="date"]) {
   line-height: 20px;
-}
-#expense-date {
+} */
+/* #expense-date {
   width: 160px;
 }
 #expense-vendor {
@@ -96,7 +91,7 @@ input:not([type="date"]) {
 }
 #expense-amount {
   width: 80px;
-}
+} */
 tbody tr:hover {
   background: rgba(0, 255, 0, 0.22);
 }
@@ -108,7 +103,6 @@ th {
   border-bottom: 1px solid green;
   border-radius: 2px;
   font-size: 14px;
-  text-align: center;
   padding: 2px 0px;
 }
 td {
@@ -119,7 +113,7 @@ td {
   padding: 10px 10px 8px 10px;
 }
 .my-buttons {
-  padding: 4px 6px;
+  /* padding: 4px 6px; */
   border-radius: 5px;
   font-size: 16px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -145,7 +139,6 @@ td {
 }
 .id-format {
   display: none;
-  text-align: center;
 }
 .date-format {
   text-align: center;
