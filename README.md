@@ -9,12 +9,12 @@ A simple application to track expenses.  Written entirely in pure JavaScript, HT
 
 ## Application Images
 
-<img src="images/expenseTracker_1.jpg" width="75%" height="75%"><br>  
-<img src="images/expenseTracker_2.jpg" width="75%" height="75%">  
+<img src="images/expenseTracker_1.jpg"><br>  
+<img src="images/expenseTracker_2.jpg">  
 
 ## Summary
 
-This application came together rather quickly, and it was a lot of fun to develop, in terms of logic and styling.  
+This application came together rather quickly, and it was a lot of fun to develop the logic and styling.  
 
 In an attempt to avoid inundating the user with numerous confirmation and alert dialogues, I devised an "undo" operation for the delete functions.  
 
