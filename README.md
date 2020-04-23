@@ -5,7 +5,7 @@ A simple application to track expenses.  Written entirely in pure JavaScript, HT
 ## Links
 
 [View Application](https://jazfunk.github.io/jk-expense-tracker-app/)  
-[View Repository](https://github.com/jazfunk/jk-expense-tracker-app.git)
+[View Repository](https://github.com/jazfunk/jk-expense-tracker-app.git)  
 
 ## Application Images
 
@@ -14,17 +14,19 @@ A simple application to track expenses.  Written entirely in pure JavaScript, HT
 
 ## Summary
 
-This application came together rather quickly, and it was a lot of fun.  
+This application came together rather quickly, and it was a lot of fun to develop, in terms of logic and styling.  
 
-In an attempt to avoid inundating the user with numerous confirmation, and alert dialogues, I came with up an "undo" operation for the delete functions.  Much like Gmail utilizes when deleting messages; instead of asking to confirm deletion before doing so, we move forward with the delete and then provide functionality to restore the deleted item(s), if desired.  The application will wait five seconds, then remove the temporary undo objects, and clear displayed messages.
+In an attempt to avoid inundating the user with numerous confirmation and alert dialogues, I devised an "undo" operation for the delete functions.  
 
-Given more time to develop this project, I would change the undo functionality to reside in the same button as the add expense button, instead of being separate.  
+Similar to deleting messages in Gmail; instead of requesting confirmation, before deletion, we move forward with the delete and then provide functionality to restore the deleted item(s), if desired.  The application will then wait five seconds to remove the temporary objects arrays, and clear displayed messages.
+
+Given more time to develop this project, I would move the undo functionality to the "Add Expense" button.
 
 Expenses are saved locally and available the next time a user visits the site.
 
-Additionally, as I've become more proficient with arrow functions, incorporating them has led to much cleaner code, and less global variables.  With creative use of CSS, this application has a smooth look and fast responsiveness. 
+Additionally, as I've become proficient with "Arrow Functions", incorporating them has led to cleaner code and fewer global variables.  With creative use of CSS, this application has a smooth look and fast responsiveness. 
 
-Learning how to properly and safely display an object array in a table, using the "createElement()" method, was a revelation for me.  Looking forward to incorporating the techniques and methods learned whlie developing this app, into future projects.
+In the final analysis, discovering how to properly and safely display an object array in a table using the "createElement()" method was a revelation for me.  The techniques learned whlie developing this application will assuredly be incporated into future projects.
 
 ## Author
 
