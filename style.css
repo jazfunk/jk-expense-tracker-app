@@ -47,22 +47,19 @@ h4 {
   font-family: "Courier New", Courier, monospace;
   color: darkgreen;
   padding: 0px;
-  padding: 0px;
   margin: 0 auto;
 }
 h5 {
-  text-align: left;
+  margin: 0 auto;
   font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: green;
-  padding-left: 12px;
-  margin: 0 auto;
+  color: red;
 }
 h5:hover {
-  color: greenyellow;
-  text-shadow: 2px 1px 2px darkgreen;
-  padding-left: 12px;
-  margin: 0 auto;
+  color: green;
+  /* text-shadow: 2px 1px 2px darkgreen; */
+  /* padding-left: 12px; */
+  /* margin: 0 auto; */
 }
 .main-table {
   width: 100%;
@@ -81,14 +78,17 @@ h5:hover {
   display: flex;
   flex-direction: column;
   background-color: rgba(0, 255, 0, 0.05);
+  align-items: flex-end;
 }
 .input-form > div {
-  padding: 10px;
+  padding: 0px 6px 10px 6px;
 }
-.input-form input:not(.my-buttons) {
-  border: 1px solid #aaaaaa;
-  border-left: 6px solid green;
-  border-radius: 10px;
+.input-form > .input-date {
+  padding-top: 0px;
+  padding-right: 6px;
+}
+.input-form > .input-amount {
+  padding-bottom: 28px;
 }
 .input-textbox {
   font-size: 14px;
@@ -96,20 +96,14 @@ h5:hover {
   color: green;
   padding: 6px 4px 4px 6px;
 }
-#expense-date {
-  display: block;
-  width: 92%;
+.input-form input:not(.my-buttons) {
+  border: 1px solid #aaaaaa;
+  border-left: 9px solid darkgreen;
+  border-radius: 14px;
 }
 #expense-amount {
   text-align: right;
-}
-#add-expense-btn {
-  display: block;
-  width: 100%;
-}
-#clear-expenses-btn {
-  display: block;
-  width: 100%;
+  width: 72px;
 }
 tbody tr:hover {
   background: rgba(0, 255, 0, 0.22);
@@ -133,19 +127,29 @@ td {
   padding: 10px 10px 8px 10px;
 }
 .my-buttons {
-  padding: 4px 6px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border: 0px;
+  border-radius: 16px;
   font-size: 16px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: darkslategray;
-  box-shadow: 0 2px 4px 0 darkgreen;
+  box-shadow: 2px 1px 4px 0 green;
 }
 .my-buttons:hover {
-  color: greenyellow;
-  background: darkgreen;
+  color: white;
+  background: darkgreen;  
+  box-shadow: 0 0px 0px 0 black;
+  border: 0px;
+}
+#clear-expenses-btn {
+  margin-right: 8px;
+}
+#clear-expenses-btn:hover {
+  background: red;
 }
 .footer-table {
-  padding-top: 20px;
+  border-top: 1px solid darkgreen;
+  padding-top: 8px;
   width: 100%;
 }
 .vendor-format {
@@ -166,4 +170,13 @@ td {
 }
 .amount-format:before {
   content: "$";
+}
+.total-expenses {
+  font-size: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: darkslategray;  
+}
+.message-display {
+  margin: auto;
 }

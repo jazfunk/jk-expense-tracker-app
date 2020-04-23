@@ -9,17 +9,13 @@
     <header>
       <h1>Expense Tracker</h1>
       <h2>Click Row to Delete</h2>
-      <h5>
-        <div id="undo-message"></div>
-        <div id="undo-expense-message"></div>
-      </h5>
     </header>
 
-    <main>      
+    <main>
       <div class="main-display">
         <div class="form-display">
           <form id="input-expense-form">
-            <div class="input-form">              
+            <div class="input-form">
               <div class="input-date">
                 <input
                   id="expense-date"
@@ -58,21 +54,25 @@
                   required
                 />
               </div>
-              <div class="input-add-new">
-                <input
-                  id="add-expense-btn"
-                  type="submit"
-                  value="Add New Expense"
-                  class="my-buttons"
-                />
-              </div>
-              <div class="input-clear-all">
+              <div class="input-buttons">
                 <input
                   id="clear-expenses-btn"
                   type="button"
                   value="Clear All"
                   class="my-buttons"
                 />
+                <input
+                  id="add-expense-btn"
+                  type="submit"
+                  value="Add Expense"
+                  class="my-buttons"
+                />
+              </div>
+              <div id="total-display" class="total-expenses"></div>
+              <div class="message-display">
+                <h5><div id="undo-message"></div></h5>
+                <h5><div id="undo-expense-message"></div></h5>
+                </h5>
               </div>
             </div>
           </form>
@@ -85,11 +85,12 @@
             </table>
           </div>
         </div>
-      </div>      
+      </div>
     </main>
 
     <footer>
       <div class="footer-table">
+        <!-- <div id="total-display" class="total-expenses"></div> -->
         <h2>by Jeff King</h2>
         <h3>
           <a href="https://github.com/jazfunk">GitHub</a>

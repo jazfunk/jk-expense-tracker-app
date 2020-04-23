@@ -96,6 +96,7 @@ const displayExpenses = (savedSortedExpenses) => {
     let expenseHeaders = Object.keys(savedSortedExpenses[0]);
     generateExpensesTable(displayTo, savedSortedExpenses);
     generateExpensesTableHead(displayTo, expenseHeaders);
+    totalExpenses(savedSortedExpenses);
   }
 };
 
@@ -108,7 +109,7 @@ const generateExpensesTableHead = (displayTo, expenseHeaders) => {
     let t = text.textContent;
     text.textContent = `${t.charAt(0).toUpperCase()}${t.slice(1)}`;
     switch (head) {
-      case "id":        
+      case "id":
         return; // Hide ID column
       case "amount":
         text.textContent = "$";
@@ -171,7 +172,7 @@ const tableRowClick = document
 
 const checkForUndoAll = () => {
   const undoLink = document.getElementById("undo-message");
-  const undoDisplayText = "All Expenses Deleted, click here to restore.";
+  const undoDisplayText = "Undo Clear All?";
   const deletedExpenses = localStorage.getItem("tempExpenses") || [];
   undoLink.textContent = deletedExpenses.length > 0 ? undoDisplayText : "";
 };
@@ -187,7 +188,7 @@ const undoAllExpensesLink = document
 
 const checkForUndoExpense = () => {
   const undoExpenseLink = document.getElementById("undo-expense-message");
-  const undoExpenseDisplayText = "Expense Deleted, click here to restore";
+  const undoExpenseDisplayText = "Undo Delete?";
   const deletedExpense = localStorage.getItem("deletedExpense") || [];
   undoExpenseLink.textContent =
     deletedExpense.length > 0 ? undoExpenseDisplayText : "";
@@ -203,3 +204,12 @@ const undoExpenseLink = document
     localStorage.removeItem("deletedExpense");
     location.reload();
   });
+
+const totalExpenses = (expenses) => {
+  const total = expenses.reduce((a, b) => {
+    const nextNumber = parseFloat(b.amount);
+    return a + nextNumber
+  }, 0);  
+  document.getElementById("total-display")
+    .textContent = `Total Expenses:  $${total.toFixed(2)}`;
+};
