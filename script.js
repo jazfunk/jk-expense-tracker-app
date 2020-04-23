@@ -45,15 +45,15 @@ const compareDates = (a, b) => {
   let comparison = 0;
   if (a.date > b.date) {
     comparison = -1;
-  } else if (a.date < b.date) {
+  }
+  if (a.date < b.date) {
     comparison = 1;
   }
   return comparison;
 };
 
 const setLocalExpenses = (newExpense) => {
-  const savedExpenses =
-    JSON.parse(window.localStorage.getItem("expenses")) || [];
+  const savedExpenses = JSON.parse(window.localStorage.getItem("expenses")) || [];
   savedExpenses.push(newExpense);
   displayExpenses(savedExpenses);
   localStorage.setItem("expenses", JSON.stringify(savedExpenses));
@@ -63,7 +63,9 @@ const setLocalExpenses = (newExpense) => {
 
 const deleteExpense = (expense) => {
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  const matchingExpense = savedExpenses.find((savedExpense) => parseFloat(expense.id) === savedExpense.id);
+  const matchingExpense = savedExpenses.find(
+    (savedExpense) => parseFloat(expense.id) === savedExpense.id
+  );
   const index = savedExpenses.indexOf(matchingExpense);
   if (index > -1) {
     savedExpenses.splice(index, 1);
@@ -147,16 +149,11 @@ const tableRowClick = document
   .addEventListener("click", (e) => {
     try {
       const selectedRow = e.target.parentElement;
-      const selectedRowID = selectedRow.querySelector(".id-format")
-        .textContent;
-      const selectedRowDate = selectedRow.querySelector(".date-format")
-        .textContent;
-      const selectedRowVendor = selectedRow.querySelector(".vendor-format")
-        .textContent;
-      const selectedRowDescription = selectedRow.querySelector(".description-format")
-        .textContent;
-      const selectedRowAmount = selectedRow.querySelector(".amount-format")
-        .textContent;
+      const selectedRowID = selectedRow.querySelector(".id-format").textContent;
+      const selectedRowDate = selectedRow.querySelector(".date-format").textContent;
+      const selectedRowVendor = selectedRow.querySelector(".vendor-format").textContent;
+      const selectedRowDescription = selectedRow.querySelector(".description-format").textContent;
+      const selectedRowAmount = selectedRow.querySelector(".amount-format").textContent;
       const expenseToDelete = new Expense(
         selectedRowVendor,
         selectedRowDescription,
@@ -166,6 +163,8 @@ const tableRowClick = document
       );
       deleteExpense(expenseToDelete);
     } catch (err) {
+      // Can't get the click event to stop firing on the header row
+      // This is my cheat around it.
       console.log(err.message);
     }
   });
@@ -175,6 +174,15 @@ const checkForUndoAll = () => {
   const undoDisplayText = "Undo Clear All?";
   const deletedExpenses = localStorage.getItem("tempExpenses") || [];
   undoLink.textContent = deletedExpenses.length > 0 ? undoDisplayText : "";
+
+  if (deletedExpenses.length > 0) {
+    console.log("no deleted epenses");
+    setTimeout(function () {
+      document.getElementById("undo-message").textContent = "";
+      localStorage.removeItem("tempExpenses");
+      location.reload();
+    }, 5000);
+  }
 };
 
 const undoAllExpensesLink = document
@@ -190,8 +198,16 @@ const checkForUndoExpense = () => {
   const undoExpenseLink = document.getElementById("undo-expense-message");
   const undoExpenseDisplayText = "Undo Delete?";
   const deletedExpense = localStorage.getItem("deletedExpense") || [];
-  undoExpenseLink.textContent =
-    deletedExpense.length > 0 ? undoExpenseDisplayText : "";
+  undoExpenseLink.textContent = deletedExpense.length > 0 ? undoExpenseDisplayText : "";
+
+  if (deletedExpense.length > 0) {
+    console.log("no deleted epense");
+    setTimeout(() => {
+      document.getElementById("undo-message").textContent = "";
+      localStorage.removeItem("deletedExpense");
+      location.reload();
+    }, 5000);
+  }
 };
 
 const undoExpenseLink = document
@@ -208,8 +224,9 @@ const undoExpenseLink = document
 const totalExpenses = (expenses) => {
   const total = expenses.reduce((a, b) => {
     const nextNumber = parseFloat(b.amount);
-    return a + nextNumber
-  }, 0);  
-  document.getElementById("total-display")
-    .textContent = `Total Expenses:  $${total.toFixed(2)}`;
+    return a + nextNumber;
+  }, 0);
+  document.getElementById(
+    "total-display"
+  ).textContent = `Total Expenses:  $${total.toFixed(2)}`;
 };
