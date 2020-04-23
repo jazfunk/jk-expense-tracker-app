@@ -51,16 +51,17 @@ h4 {
   margin: 0 auto;
 }
 h5 {
+  text-align: left;
   font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: green;
-  padding: 0px;
+  padding-left: 12px;
   margin: 0 auto;
 }
 h5:hover {
   color: greenyellow;
   text-shadow: 2px 1px 2px darkgreen;
-  padding: 0px;
+  padding-left: 12px;
   margin: 0 auto;
 }
 .main-table {
@@ -75,73 +76,40 @@ h5:hover {
   flex: 2;
 }
 .input-form {
-  /* border: 2px solid black; */
   margin: 0 auto;
-  height: 222px;
+  height: 300px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  background-color: rgba(0, 255, 0, 0.05);
 }
-/* .input-form > .input-date {
-  align-self: flex-start;
-  flex: 1;
-}
-.input-form > .input-vendor {
-  align-self: flex-start;
-  flex: 2;
-}
-.input-form > .input-description {
-  align-self: flex-start;
-  flex: 1;
-}
-.input-form > .input-amount {
-  align-self: flex-start;
-  flex: 1;
-}
-.input-form > .input-add-new {
-  margin-top: auto;
-  margin-top: auto;
-  flex: 1;
-} */
-.input-form > .input-clear-all {
-  margin-top: auto;
+.input-form > div {
+  padding: 10px;
 }
 .input-form input:not(.my-buttons) {
-  /* width: 140px; */
   border: 1px solid #aaaaaa;
-  border-left: 4px solid green;
-  border-radius: 5px;
+  border-left: 6px solid green;
+  border-radius: 10px;
 }
 .input-textbox {
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: green;
-  /* padding: 6px 4px 4px 6px; */
+  padding: 6px 4px 4px 6px;
 }
-/* input:not([type="date"]) {
-  line-height: 20px;
-} */
 #expense-date {
   display: block;
-  width: 97%;
+  width: 92%;
 }
-/* #expense-vendor { */
-/* width: 160px; */
-/* } */
-/* #expense-description { */
-/* width: 250px; */
-/* } */
-/* #expense-amount {
-  width: 80px;
-  margin-right: auto;
-} */
-#add-expense-btn { 
+#expense-amount {
+  text-align: right;
+}
+#add-expense-btn {
   display: block;
   width: 100%;
 }
 #clear-expenses-btn {
   display: block;
-  width: 100%;  
+  width: 100%;
 }
 tbody tr:hover {
   background: rgba(0, 255, 0, 0.22);
@@ -152,11 +120,12 @@ tr:nth-child(even) {
 th {
   background: rgba(0, 255, 0, 0.22);
   border-bottom: 1px solid green;
-  border-radius: 2px;
+  border-radius: 12px;
   font-size: 14px;
   padding: 2px 0px;
 }
 td {
+  text-align: left;
   border: 0px solid green;
   border-radius: 2px;
   font-size: 13px;
@@ -164,32 +133,23 @@ td {
   padding: 10px 10px 8px 10px;
 }
 .my-buttons {
-  /* padding: 4px 6px; */
-  border-radius: 5px;
+  padding: 4px 6px;
+  border-radius: 8px;
   font-size: 16px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: darkslategray;
   box-shadow: 0 2px 4px 0 darkgreen;
 }
 .my-buttons:hover {
-  color: green;
-  text-shadow: 1px 1px 3px greenyellow;
+  color: greenyellow;
+  background: darkgreen;
 }
 .footer-table {
-  border-top: 1px solid green;
-  border-left: 0px;
-  border-right: 0px;
+  padding-top: 20px;
   width: 100%;
-  text-align: center;
-  text-align: center;
-  padding: 0px;
-  margin: 0 auto;
 }
 .vendor-format {
   font-weight: bold;
-}
-.description-format {
-  font-size: 11px;
 }
 .id-format {
   display: none;

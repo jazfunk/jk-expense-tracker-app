@@ -9,13 +9,17 @@
     <header>
       <h1>Expense Tracker</h1>
       <h2>Click Row to Delete</h2>
+      <h5>
+        <div id="undo-message"></div>
+        <div id="undo-expense-message"></div>
+      </h5>
     </header>
 
     <main>      
       <div class="main-display">
         <div class="form-display">
           <form id="input-expense-form">
-            <div class="input-form">
+            <div class="input-form">              
               <div class="input-date">
                 <input
                   id="expense-date"
@@ -73,6 +77,7 @@
             </div>
           </form>
         </div>
+
         <div class="table-display">
           <div class="expenses-table">
             <table class="main-table">
@@ -85,10 +90,6 @@
 
     <footer>
       <div class="footer-table">
-        <h5>
-          <div id="undo-message"></div>
-          <div id="undo-expense-message"></div>
-        </h5>
         <h2>by Jeff King</h2>
         <h3>
           <a href="https://github.com/jazfunk">GitHub</a>
