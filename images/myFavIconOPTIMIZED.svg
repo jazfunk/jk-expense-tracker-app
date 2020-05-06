@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+<svg width=".16666in" height=".16666in" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.1" viewBox="0 0 167 167" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil5 {fill:none}
+    .fil0 {fill:#17252A}
+    .fil1 {fill:#2B7A78}
+    .fil3 {fill:#DEF2F1}
+    .fil4 {fill:#2B7A78;fill-rule:nonzero}
+    .fil2 {fill:#FEFFFF;fill-rule:nonzero}
+   ]]>
+  </style>
+   <clipPath id="a">
+    <path d="m83 0c46 0 84 37 84 83s-38 84-84 84-83-38-83-84 37-83 83-83z"/>
+   </clipPath>
+ </defs>
+  <g clip-path="url(#a)">
+     <rect class="fil0" x="15" y="-59" width="154" height="289"/>
+     <rect class="fil1" x="-84" y="-58" width="149" height="288"/>
+     <path class="fil2" d="m15 127c6-1 10-2 13-4 2-2 3-7 3-14v-82h26v83c0 12-2 21-7 26-5 6-14 8-26 9l-9-18z"/>
+     <rect class="fil3" x="69" y="-59" width="198" height="289"/>
+     <polygon class="fil4" points="73 118 73 27 98 27 98 67 132 27 159 27 124 69 168 118 136 118 98 75 98 118"/>
+  </g>
+  <path class="fil5" d="m83 0c46 0 84 37 84 83s-38 84-84 84-83-38-83-84 37-83 83-83z"/>
+</svg>
