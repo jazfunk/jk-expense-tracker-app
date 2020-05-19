@@ -1,18 +1,12 @@
-class Expense {
-  constructor(vendor, description, date, amount, id) {
-    this.vendor = vendor;
-    this.description = description;
-    this.date = date;
-    this.amount = amount;
-    this.id = id;
-  }
-}
+const table = document.querySelector("#main-table");
+const expensesTable = new ExpensesTable(table);
 
 window.onload = () => {
   checkForUndoAll();
   checkForUndoExpense();
   const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  displayExpenses(savedExpenses.sort(compareDates));
+  expensesTable.display(savedExpenses);
+  displayExpensesTotal(savedExpenses);
   document.getElementById("expense-date").focus();
 };
 
@@ -22,17 +16,19 @@ const clearButton = document
     const tempExpenses = localStorage.getItem("expenses");
     localStorage.clear();
     localStorage.setItem("tempExpenses", tempExpenses);
-    location.reload();
+    expensesTable.display(getSavedExpenses());
   });
 
 const inputForm = document
   .getElementById("input-expense-form")
-  .addEventListener("submit", () => {
+  .addEventListener("submit", (e) => {
+    e.preventDefault();
     const date = document.getElementById("expense-date").value;
     const description = document.getElementById("expense-description").value;
     const amount = document.getElementById("expense-amount").value;
     const vendor = document.getElementById("expense-vendor").value;
     addNewExpense(vendor, description, date, amount);
+    displayExpensesTotal(getSavedExpenses());
   });
 
 const addNewExpense = (vendor, description, date, amount) => {
@@ -53,121 +49,44 @@ const compareDates = (a, b) => {
 };
 
 const setLocalExpenses = (newExpense) => {
-  const savedExpenses = JSON.parse(window.localStorage.getItem("expenses")) || [];
+  const savedExpenses = getSavedExpenses();
+
   savedExpenses.push(newExpense);
-  displayExpenses(savedExpenses);
+  expensesTable.display(savedExpenses);
   localStorage.setItem("expenses", JSON.stringify(savedExpenses));
   localStorage.removeItem("tempExpenses");
   localStorage.removeItem("deletedExpense");
 };
 
-const deleteExpense = (expense) => {
-  const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  const matchingExpense = savedExpenses.find(
-    (savedExpense) => parseFloat(expense.id) === savedExpense.id
+const deleteExpense = (expenseId) => {
+  const expenses = getSavedExpenses().filter(
+    (expense) => expense.id !== parseFloat(expenseId)
   );
-  const index = savedExpenses.indexOf(matchingExpense);
-  if (index > -1) {
-    savedExpenses.splice(index, 1);
-    localStorage.setItem("expenses", JSON.stringify(savedExpenses));
-    localStorage.setItem("deletedExpense", JSON.stringify(matchingExpense));
-    location.reload();
+  localStorage.setItem("expenses", JSON.stringify(expenses));
+  const savedExpenses = getSavedExpenses();
+  expensesTable.display(savedExpenses);
+  displayExpensesTotal(savedExpenses);
+
+  //   const matchingExpense = savedExpenses.find(
+  //     (savedExpense) => parseFloat(expenseId) === savedExpense.id
+  //   );
+  //   const index = savedExpenses.indexOf(matchingExpense);
+  //   if (index > -1) {
+  //     savedExpenses.splice(index, 1);
+  //     localStorage.setItem("expenses", JSON.stringify(savedExpenses));
+  //     localStorage.setItem("deletedExpense", JSON.stringify(matchingExpense));
+  //   }
+};
+
+const getSavedExpenses = () => {
+  return JSON.parse(window.localStorage.getItem("expenses")) || [];
+};
+
+document.querySelector("#main-table").addEventListener("click", (e) => {
+  if (e.target.className === "action-btn clickable") {    
+    deleteExpense(e.target.getAttribute("data-expense-id"));
   }
-};
-
-const displayCurrency = (value) => {
-  const dec = value.split(".")[1];
-  const len = dec && dec.length > 2 ? dec.length : 2;
-  return addCommasToDollars(Number(value).toFixed(len));
-};
-
-const addCommasToDollars = (value) => value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-const displayDate = (value) => {
-  const d = new Date(`${value} 00:00:00`);
-  const month = new Intl.DateTimeFormat("en", { month: "numeric" }).format(d);
-  const day = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
-  const year = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-  const dateFormtted = `${month}-${day}-${year}`;
-  return dateFormtted;
-};
-
-const displayExpenses = (savedSortedExpenses) => {
-  if (savedSortedExpenses.length > 0) {
-    let displayTo = document.querySelector("table");
-    let expenseHeaders = Object.keys(savedSortedExpenses[0]);
-    generateExpensesTable(displayTo, savedSortedExpenses);
-    generateExpensesTableHead(displayTo, expenseHeaders);
-    totalExpenses(savedSortedExpenses);
-  }
-};
-
-const generateExpensesTableHead = (displayTo, expenseHeaders) => {
-  let thead = displayTo.createTHead();
-  let row = thead.insertRow();
-  for (let head of expenseHeaders) {
-    let th = document.createElement("th");
-    let text = document.createTextNode(head);
-    let t = text.textContent;
-    text.textContent = `${t.charAt(0).toUpperCase()}${t.slice(1)}`;
-    switch (head) {
-      case "id":
-        return; // Hide ID column
-      case "amount":
-        text.textContent = "$";
-        break;
-      default:
-    }
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-};
-
-const generateExpensesTable = (displayTo, expenses) => {
-  for (let element of expenses) {
-    let row = displayTo.insertRow();
-    for (key in element) {
-      let cell = row.insertCell();
-      cell.className = `${key}-format`;
-      let text = document.createTextNode(element[key]);
-      switch (key) {
-        case "date":
-          text.textContent = displayDate(text.textContent);
-          break;
-        case "amount":
-          text.textContent = displayCurrency(text.textContent);
-          break;
-        default:
-      }
-      cell.appendChild(text);
-    }
-  }
-};
-
-const tableRowClick = document
-  .querySelector("table")
-  .addEventListener("click", (e) => {
-    try {
-      const selectedRow = e.target.parentElement;
-      const selectedRowID = selectedRow.querySelector(".id-format").textContent;
-      const selectedRowDate = selectedRow.querySelector(".date-format").textContent;
-      const selectedRowVendor = selectedRow.querySelector(".vendor-format").textContent;
-      const selectedRowDescription = selectedRow.querySelector(".description-format").textContent;
-      const selectedRowAmount = selectedRow.querySelector(".amount-format").textContent;
-      const expenseToDelete = new Expense(
-        selectedRowVendor,
-        selectedRowDescription,
-        selectedRowDate,
-        selectedRowAmount,
-        selectedRowID
-      );
-      deleteExpense(expenseToDelete);
-    } catch (err) {
-      // Can't get the click event to stop firing on the header row
-      // This is my cheat around it.
-      console.log(err.message);
-    }
-  });
+});
 
 const checkForUndoAll = () => {
   const undoLink = document.getElementById("undo-message");
@@ -198,7 +117,8 @@ const checkForUndoExpense = () => {
   const undoExpenseLink = document.getElementById("undo-expense-message");
   const undoExpenseDisplayText = "Undo Delete?";
   const deletedExpense = localStorage.getItem("deletedExpense") || [];
-  undoExpenseLink.textContent = deletedExpense.length > 0 ? undoExpenseDisplayText : "";
+  undoExpenseLink.textContent =
+    deletedExpense.length > 0 ? undoExpenseDisplayText : "";
 
   if (deletedExpense.length > 0) {
     console.log("no deleted epense");
@@ -221,7 +141,7 @@ const undoExpenseLink = document
     location.reload();
   });
 
-const totalExpenses = (expenses) => {
+const displayExpensesTotal = (expenses) => {
   const total = expenses.reduce((a, b) => {
     const nextNumber = parseFloat(b.amount);
     return a + nextNumber;

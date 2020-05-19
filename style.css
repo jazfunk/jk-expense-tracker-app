@@ -8,6 +8,9 @@ body {
   background-color: #dddddd;
   text-align: center;
 }
+.clickable:hover {
+  cursor: pointer;
+}
 a:link {
   color: black;
 }
