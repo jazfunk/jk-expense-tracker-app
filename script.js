@@ -4,7 +4,7 @@ const expensesTable = new ExpensesTable(table);
 window.onload = () => {
   checkForUndoAll();
   checkForUndoExpense();
-  const savedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
+  const savedExpenses = getSavedExpenses();
   expensesTable.display(savedExpenses);
   displayExpensesTotal(savedExpenses);
   document.getElementById("expense-date").focus();
